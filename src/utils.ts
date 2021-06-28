@@ -1,10 +1,9 @@
-import setRoot from '@cgps/phylocanvas/functions/setRoot';
 import { useCallback, useRef } from 'react';
 
-import { Tree, TreeNode } from './types/phylocanvas';
+import { PhylocanvasTree, TreeNode } from './types/phylocanvas';
 
 export function setRootNLevelsUp(
-  tree: Tree,
+  tree: PhylocanvasTree,
   nodeID: string,
   noLevels = 6,
   minLeafToRootLength = 5
@@ -29,7 +28,7 @@ export function setRootNLevelsUp(
       }
     }
   }
-  tree.setState(setRoot(tree, node ? node.id : null));
+  tree.setRoot(node ? node.id : null);
 }
 
 export function useGetLatest<T>(obj: T): () => T {

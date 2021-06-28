@@ -1,6 +1,5 @@
-export type Tree = Partial<{ controlledOptions: { [key: string]: unknown } }> & PhylocanvasTree;
-
 export type Newick = string;
+
 type NodeStyle = Partial<{ shape: string; [key: string]: unknown }>;
 
 export type Decorate = (fnName: string, fn: unknown) => void;
@@ -53,7 +52,7 @@ type PhylocanvasState = {
   };
   selectableInternalNodes: true;
   selectableLeafNodes: true;
-  selectedIds: null | string[];
+  selectedIds: string[];
   showLabels: false;
   showNodes: true;
   size: { width: number; height: number };
@@ -68,7 +67,7 @@ type PhylocanvasState = {
 };
 
 type TreeNodes = {
-  leafNodes: TreeNode[];
+  leafNodes: Leaf[];
   maxLabelWidth: 28;
   nodeById: { [key: string]: TreeNode };
   originalSource: Newick;
@@ -96,6 +95,10 @@ export type TreeNode = {
   x: 3.439360929557008;
   y: 0;
 };
+
+export type Leaf = {
+  id: string
+} & TreeNode
 
 type ContextMenu = {
   close: unknown;
@@ -137,7 +140,7 @@ export type PhylocanvasTree = {
   getLeafNodes: (nodeOrId: string | TreeNode) => void;
   getNewick: () => void;
   getNodeAtPoint: () => void;
-  getNodeById: (nodeOrId: string | TreeNode) => TreeNode;
+  getNodeById: (nodeOrId: string| number | TreeNode) => TreeNode;
   getNodeLabels: () => void;
   getVirtualTree: () => void;
   highlightNode: () => void;
@@ -160,7 +163,7 @@ export type PhylocanvasTree = {
   setBranchScale: () => void;
   setFontSize: () => void;
   setNodeSize: () => void;
-  setRoot: () => void;
+  setRoot: (nodeOrId: string| number | TreeNode | null) => void;
   setScale: () => void;
   setSource: () => void;
   setState: (updater: PhylocanvasState) => void;

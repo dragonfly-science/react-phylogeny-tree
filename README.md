@@ -1,6 +1,6 @@
 # react-phylocanvas3
 
-React wrapper component for [Phylocanvas3](https://github.com/mkoliba/phylocanvas3). Use prepared component `PhylogenyTree` or build your own with `usePhylocanvas` hook.
+React wrapper for [Phylocanvas3](https://github.com/mkoliba/phylocanvas3), phylogeny tree visualisation library. Use prepared component `PhylogenyTree` or build your own with `usePhylocanvas` hook.
 
 ## Example
 
@@ -40,6 +40,7 @@ export function YourComponent(props): JSX.Element {
         console.log('list of selected IDs', selectedIds)
         setHighlighted( selectedIds );
       }),
+      createOnViewSubtreePlugin()
     ];
   }, []);
 
@@ -68,8 +69,8 @@ export function YourComponent(props): JSX.Element {
   )
 }
 ```
-## Components
-`PhylogenyTree`: main component which contain `TreeCanvas` component and `usePhylocanvas` hook. Its props are:
+## Main API
+`PhylogenyTree`: component containing `TreeCanvas`, `ZoomButtons` components and `usePhylocanvas` hook. Its props are:
 - `newick`: newick tree string, type `string`, mandatory
 - `options`: object, Phylocanvas options
 - `plugins`: array of plugins, viz section Plugins bellow
@@ -78,8 +79,13 @@ export function YourComponent(props): JSX.Element {
 - `zoom`: boolean, when `interactive` and `zoom` are `true` buttons for zoom appears.
 - `zoomStyle`: `CSSProperties` object passed to zoom buttons container. 
 
-
-`TreeCanvas`: helper component which contains canvas. Can be used if you decide to create your own PhylogenyTree component.
+`usePhylocanvas`: react hook wrapping Phylocanvas instance
+- `newick`: newick tree string, type `string`, mandatory,
+- `canvasRef`: `React.MutableRefObject<HTMLCanvasElement | null>`
+- `options`: object, Phylocanvas options
+- `plugins`: array of plugins, viz section Plugins bellow
+- `hooks`: array of hooks, viz section Hooks bellow
+- `interactive` = false
 
 ## Plugins
 Plugins supported by Phylocanvas3 of type:
@@ -89,7 +95,9 @@ Plugins supported by Phylocanvas3 of type:
 ```
 
 ### Phylocanvas plugins
-Patched versions of Phylocanvas3 `@cgps/phylocanvas-plugin-context-menu` and `@cgps/phylocanvas-plugin-interactions` are already integrated in package and are added on begging of plugin list when `interactive` is set `true` in `PhylogenyTree` props or `usePhylocanvas` arguments. 
+Patched versions of Phylocanvas3 `@cgps/phylocanvas-plugin-context-menu` and `@cgps/phylocanvas-plugin-interactions` are prepared in `usePhylocanvas` and are added on begging of plugin list when `interactive` is set to `true` in `PhylogenyTree` props or `usePhylocanvas` arguments. 
+
+`scaleBarPlugin`: plugin which adds the scale bar as a reference for branch length.
 
 ### Plugin factories
 Serve for creation of plugin function with callback. Import from `react-phylocanvas3/plugins`.
@@ -120,19 +128,26 @@ Serve for creation of plugin function with callback. Import from `react-phylocan
 You can create your own plugin for phylocanvas3. They are just a function which accepts tree instance and internal decorate function from Phylocanvas. 
 
 ## Hooks
-import from `react-phylocanvas3/hooks`, their type is:
+import from `react-phylocanvas3/hooks`. Pass in array with stable reference between rerenders (memoize). Their type is:
 ```typescript
 ((tree: Tree, options: PhylocanvasOptions) => void)[];
 ```
 
-`useLeafSubtree`
-
-`useAutoResize`
-
-## Utils
-
-```typescript
-function setRootNLevelsUp(tree: Tree, nodeID: string, noLevels = 6, minLeafToRootLength = 5): void;
+`useLeafSubtree`: react hook which wraps `setRootNLevelsUp`. Needs to receive folowing object under key `leafSubtree` from `options`.
+``` typescript
+leafSubtree: {
+    leafID?: string;
+    noLevels?: number;
+    minLeafToRootLength?: number;
+    setLeafLabels?: (ids: (string | number)[]) => void;
+  }
 ```
 
-`useGetLatest`
+`useAutoResize`: react hook for autoresizing canvas when window size changes.
+
+## Utils
+`setRootNLevelsUp`: function which receive Phylocanvas instance and ID of a leaf and show subtree which root is at least `noLevels` up in hierarchy and minimal length between leaf and new subtree root is `minLeafToRootLength`.
+```typescript
+(tree: Tree, nodeID: string, noLevels = 6, minLeafToRootLength = 5) => void;
+```
+

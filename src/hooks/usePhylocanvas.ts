@@ -3,10 +3,10 @@ import { createTree } from '@cgps/phylocanvas/index';
 import { useCallback, useEffect, useRef } from 'react';
 // import interactionsPlugin from '@cgps/phylocanvas-plugin-interactions/index';
 
-import { Newick, PhylocanvasOptions, Tree } from '../types/phylocanvas';
+import { Newick, PhylocanvasOptions, PhylocanvasTree } from '../types/phylocanvas';
 
-export type Plugins = ((tree: Tree, decorate: (fnName: string, fn: unknown) => void) => void)[];
-export type Hooks = ((tree: Tree, options: PhylocanvasOptions) => void)[];
+export type Plugins = ((tree: PhylocanvasTree, decorate: (fnName: string, fn: unknown) => void) => void)[];
+export type Hooks = ((tree: PhylocanvasTree, options: PhylocanvasOptions) => void)[];
 
 const defaultOptions = {
   nodeSize: 7,
@@ -27,7 +27,7 @@ export function usePhylocanvas(
   interactive = false
 ) {
   const treeInstance = useRef(null);
-  const getTree = useCallback<() => Tree | null>(() => treeInstance.current, []); // equivalent to useGetLatest(treeInstance.current);
+  const getTree = useCallback<() => PhylocanvasTree | null>(() => treeInstance.current, []); // equivalent to useGetLatest(treeInstance.current);
 
   useEffect(() => {
     if (canvasRef.current) {
@@ -54,18 +54,10 @@ export function usePhylocanvas(
         },
         allPlugins
       );
-      tree.controlledOptions = options;
       treeInstance.current = tree;
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newick, plugins]);
-
-  useEffect(() => {
-    const tree = getTree();
-    if (tree?.controlledOptions) {
-      tree.controlledOptions = options;
-    }
-  }, [options, getTree]);
 
   loopHooks(hooks, getTree(), options);
 

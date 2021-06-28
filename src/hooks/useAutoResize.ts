@@ -1,9 +1,9 @@
 import { useEffect } from 'react';
 
-import { Tree } from '../types/phylocanvas';
+import { PhylocanvasTree } from '../types/phylocanvas';
 import { useGetLatest } from '../utils';
 
-export function useAutoResize(treeInstance: Tree | null) {
+export function useAutoResize(treeInstance: PhylocanvasTree | null) {
   const getTree = useGetLatest(treeInstance);
   // console.log('useAutoResize1', treeInstance, treeInstance?.state);
   useEffect(() => {
@@ -14,13 +14,6 @@ export function useAutoResize(treeInstance: Tree | null) {
         const width = tree.canvas.parentElement?.clientWidth;
         const height = tree.canvas.parentElement?.clientHeight;
         if (width && height) {
-          console.log(
-            // 'width && height',
-            // width,
-            // height,
-            tree.state?.scale,
-            tree.state?.selectedIds,
-          );
 
           tree.resize(width, height);
         }
