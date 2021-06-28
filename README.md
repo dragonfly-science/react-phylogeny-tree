@@ -11,7 +11,8 @@ import PhylogenyTree from 'react-phylocanvas3';
 import {
   createOnSelectPlugin,
   scaleBarPlugin,
-  createOnViewSubtreePlugin
+  createOnViewSubtreePlugin,
+  createOnRedrawReRootTreePlugin,
 } from 'react-phylocanvas3/plugins';
 import {useLeafSubtree, useAutoResize} from 'react-phylocanvas3/hooks';
 import 'react-phylocanvas3/css/zoom.css'; // in next.js css imports might need to go to pages/_app.js
@@ -22,11 +23,12 @@ const newick = '(((A:0.2, B:0.3):0.3,(C:0.5, D:0.3):0.2):0.3, E:0.7):1.0;';
 const hooks = [useAutoResize, useLeafSubtree];
 
 export function YourComponent(props): JSX.Element {
-  const [highlighted, setHighlighted] = React.useState( ['A']);
+  const [highlighted, setHighlighted] = React.useState(['A']);
   const [subtreeID, setSubtreeID] = React.useState<string>();
+  const [leafs, setLeafs] = React.useState<string[]>();
 
   // memoized props, so they are not recreated on every render and pass on ref. equality
-  const options = useMemo(
+  const options = React.useMemo(
     () => ({
       selectedIds: highlighted,
       leafSubtree: { leafID: subtreeID, noLevels: 1, minLeafToRootLength: 0 },
@@ -37,10 +39,16 @@ export function YourComponent(props): JSX.Element {
     return [
       scaleBarPlugin,
       createOnSelectPlugin((tree, selectedIds) => {
-        console.log('list of selected IDs', selectedIds)
-        setHighlighted( selectedIds );
+        setHighlighted(selectedIds);
       }),
-      createOnViewSubtreePlugin()
+      createOnViewSubtreePlugin((tree, leafsInTree) => {
+        setSubtreeID(null)
+        setLeafs(leafsInTree);
+      }),
+      createOnRedrawReRootTreePlugin((tree, leafsInTree) => {
+        setSubtreeID(null)
+        setLeafs(leafsInTree);
+      })
     ];
   }, []);
 
@@ -54,16 +62,15 @@ export function YourComponent(props): JSX.Element {
           interactive={true}
           zoom
         />
-        <div>
-           {highlighted}
-        </div>
-        <button
-          onClick={() => {
-            setSubtreeID('B');
-          }}
-        >
+       <button
+        onClick={() => {
+          setSubtreeID('B');
+        }}
+      >
         set subtree around leaf B
       </button>
+      <div>leafs in subtree: {leafs}</div>
+      <div>selected IDs: {highlighted}</div>
 
     </div>
   )
