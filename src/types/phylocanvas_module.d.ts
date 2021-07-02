@@ -1,1 +1,1 @@
-declare module '@cgps/phylocanvas/index'
+declare module '@mkoliba/phylocanvas/index'

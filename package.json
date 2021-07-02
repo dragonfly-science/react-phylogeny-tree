@@ -36,20 +36,18 @@
     "clean": "rimraf lib/",
     "copy-files": "copyfiles -f src/css/*.css lib/css/",
     "build": "tsc && yarn copy-files",
-    "prepare": "yarn build",
+    "prepare": "yarn clean && yarn build",
     "watch": "watch 'yarn build' ./src"
   },
   "dependencies": {
-    "@cgps/phylocanvas": "https://gitpkg.now.sh/mkoliba/phylocanvas3/phylocanvas?main",
-    "@cgps/phylocanvas-plugin-context-menu": "https://gitpkg.now.sh/mkoliba/phylocanvas3/plugin-context-menu?ab2b908",
-    "@cgps/phylocanvas-plugin-interactions": "https://gitpkg.now.sh/mkoliba/phylocanvas3/plugin-interactions?main",
-    "@cgps/phylocanvas-plugin-scalebar": "https://gitpkg.now.sh/mkoliba/phylocanvas3/plugin-scalebar?main",
-    "@types/styled-jsx": "^2.2.8"
+    "@mkoliba/phylocanvas": "^3.18.0-beta.2",
+    "@mkoliba/phylocanvas-plugin-context-menu": "^3.18.0-beta.2",
+    "@mkoliba/phylocanvas-plugin-interactions": "^3.18.0-beta.2",
+    "@mkoliba/phylocanvas-plugin-scalebar": "^3.18.0-beta.2"
   },
   "peerDependencies": {
     "react": "^16.8.0",
-    "react-dom": "^16.8.0",
-    "styled-jsx": "^3.4.4"
+    "react-dom": "^16.8.0"
   },
   "devDependencies": {
     "@types/node": "^15.12.2",

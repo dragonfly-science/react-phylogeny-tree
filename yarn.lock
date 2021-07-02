@@ -23,31 +23,6 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@cgps/phylocanvas-plugin-context-menu@https://gitpkg.now.sh/mkoliba/phylocanvas3/plugin-context-menu?ab2b908":
-  version "3.18.0"
-  resolved "https://gitpkg.now.sh/mkoliba/phylocanvas3/plugin-context-menu?ab2b908#8605e282a1efadeeca3b069537e0ad88227a6ddc"
-  dependencies:
-    "@cgps/phylocanvas" "^3.18.0"
-
-"@cgps/phylocanvas-plugin-interactions@https://gitpkg.now.sh/mkoliba/phylocanvas3/plugin-interactions?main":
-  version "3.18.0"
-  resolved "https://gitpkg.now.sh/mkoliba/phylocanvas3/plugin-interactions?main#0f82da07fb4b0f62b59f721c600d4fad2e1f382e"
-  dependencies:
-    "@cgps/phylocanvas" "^3.18.0"
-    "@thesoulfresh/pan-zoom" "https://github.com/soulfresh/pan-zoom#release/4.1.4"
-
-"@cgps/phylocanvas-plugin-scalebar@https://gitpkg.now.sh/mkoliba/phylocanvas3/plugin-scalebar?main":
-  version "3.18.0"
-  resolved "https://gitpkg.now.sh/mkoliba/phylocanvas3/plugin-scalebar?main#4ee32bdc44cac81617e2868a48735b7ce962062b"
-  dependencies:
-    "@cgps/phylocanvas" "^3.18.0"
-
-"@cgps/phylocanvas@^3.18.0", "@cgps/phylocanvas@https://gitpkg.now.sh/mkoliba/phylocanvas3/phylocanvas?main":
-  version "3.18.0"
-  resolved "https://gitpkg.now.sh/mkoliba/phylocanvas3/phylocanvas?main#fade343585226a6ba3de0fd22bafe4d3d1b4c25d"
-  dependencies:
-    biojs-io-newick "^1.5.0"
-
 "@eslint/eslintrc@^0.4.2":
   version "0.4.2"
   resolved "https://registry.yarnpkg.com/@eslint/eslintrc/-/eslintrc-0.4.2.tgz#f63d0ef06f5c0c57d76c4ab5f63d3835c51b0179"
@@ -62,6 +37,35 @@
     js-yaml "^3.13.1"
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
+
+"@mkoliba/phylocanvas-plugin-context-menu@^3.18.0-beta.2":
+  version "3.18.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@mkoliba/phylocanvas-plugin-context-menu/-/phylocanvas-plugin-context-menu-3.18.0-beta.2.tgz#4aaf73d9f61ea559410a7ae6e5a552c9986828e9"
+  integrity sha512-UgWVvgLe8HiyPrD3jkyq0mDEo0nZxa8HBsNlLEwxSQE9weLu3ZTSMKZaQQY173X7gSD1oto3R82ZFiWRkPo1JA==
+  dependencies:
+    "@mkoliba/phylocanvas" "^3.18.0-beta.2"
+
+"@mkoliba/phylocanvas-plugin-interactions@^3.18.0-beta.2":
+  version "3.18.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@mkoliba/phylocanvas-plugin-interactions/-/phylocanvas-plugin-interactions-3.18.0-beta.2.tgz#06421ad5c565614a3d5f9974e4ee381dd70ff966"
+  integrity sha512-Pzds1BDulgVEeVztpq7RC8POIpDwQPmg6bjzrniNY9gRx5GZc0MCyiUaatOmF5gwSU9bCxLbIQNtE+NHSQHc5Q==
+  dependencies:
+    "@mkoliba/phylocanvas" "^3.18.0-beta.2"
+    "@thesoulfresh/pan-zoom" "https://github.com/soulfresh/pan-zoom#release/4.1.4"
+
+"@mkoliba/phylocanvas-plugin-scalebar@^3.18.0-beta.2":
+  version "3.18.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@mkoliba/phylocanvas-plugin-scalebar/-/phylocanvas-plugin-scalebar-3.18.0-beta.2.tgz#a98b1c684199044d28b4604c5927fa8a3a40180a"
+  integrity sha512-5Csc7Qhbx4elu31tz8nRWSiYTbuAr45RMXr02Fp0mzsenzhTR9urfFr8O5ag+KOesNvPgYxsVoHLLMXIxaHmGA==
+  dependencies:
+    "@mkoliba/phylocanvas" "^3.18.0-beta.2"
+
+"@mkoliba/phylocanvas@^3.18.0-beta.2":
+  version "3.18.0-beta.2"
+  resolved "https://registry.yarnpkg.com/@mkoliba/phylocanvas/-/phylocanvas-3.18.0-beta.2.tgz#4f90f471abe59a34401bc09da56cff302c66a8eb"
+  integrity sha512-NHT6/4wmwL0QoMON31o7R4NVuNNSF2/ajNp2ZpVTBMmeWV2bgdW/Ho9QCdNJLdnUUSox3j/kZ/OgiB/yPbBnAg==
+  dependencies:
+    biojs-io-newick "^1.5.0"
 
 "@nodelib/fs.scandir@2.1.5":
   version "2.1.5"
@@ -84,9 +88,9 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
-"@thesoulfresh/pan-zoom@https://github.com/soulfresh/pan-zoom#release/4.1.4":
+"@thesoulfresh/pan-zoom@git+https://github.com/soulfresh/pan-zoom.git#release/4.1.4":
   version "4.1.4"
-  resolved "https://github.com/soulfresh/pan-zoom#b48986789275c797851b69bfc963eadd5752649e"
+  resolved "git+https://github.com/soulfresh/pan-zoom.git#b48986789275c797851b69bfc963eadd5752649e"
   dependencies:
     dprop "^1.0.0"
     gl-vec2 "^1.3.0"
@@ -141,13 +145,6 @@
   version "0.16.1"
   resolved "https://registry.yarnpkg.com/@types/scheduler/-/scheduler-0.16.1.tgz#18845205e86ff0038517aab7a18a62a6b9f71275"
   integrity sha512-EaCxbanVeyxDRTQBkdLb3Bvl/HK7PBK6UJjsSixB0iHKoWxE5uu2Q/DgtpOhPIojN0Zl1whvOd7PoHs2P0s5eA==
-
-"@types/styled-jsx@^2.2.8":
-  version "2.2.8"
-  resolved "https://registry.yarnpkg.com/@types/styled-jsx/-/styled-jsx-2.2.8.tgz#b50d13d8a3c34036282d65194554cf186bab7234"
-  integrity sha512-Yjye9VwMdYeXfS71ihueWRSxrruuXTwKCbzue4+5b2rjnQ//AtyM7myZ1BEhNhBQ/nL/RE7bdToUoLln2miKvg==
-  dependencies:
-    "@types/react" "*"
 
 "@typescript-eslint/eslint-plugin@^4.26.1":
   version "4.27.0"

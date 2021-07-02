@@ -16,8 +16,8 @@ import {
 } from 'react-phylocanvas3/plugins';
 import {useLeafSubtree, useAutoResize} from 'react-phylocanvas3/hooks';
 import 'react-phylocanvas3/css/zoom.css'; // in next.js css imports might need to go to pages/_app.js
-import '@cgps/phylocanvas-plugin-context-menu/styles.css';
-import '@cgps/phylocanvas-plugin-interactions/styles.css';
+import '@mkoliba/phylocanvas-plugin-context-menu/styles.css';
+import '@mkoliba/phylocanvas-plugin-interactions/styles.css';
 
 const newick = '(((A:0.2, B:0.3):0.3,(C:0.5, D:0.3):0.2):0.3, E:0.7):1.0;';
 const hooks = [useAutoResize, useLeafSubtree];

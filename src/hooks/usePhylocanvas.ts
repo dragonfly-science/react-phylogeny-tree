@@ -1,7 +1,7 @@
-import contextMenuPlugin from '@cgps/phylocanvas-plugin-context-menu/index';
-import { createTree } from '@cgps/phylocanvas/index';
+import { createTree } from '@mkoliba/phylocanvas';
+import contextMenuPlugin from '@mkoliba/phylocanvas-plugin-context-menu';
 import { useCallback, useEffect, useRef } from 'react';
-// import interactionsPlugin from '@cgps/phylocanvas-plugin-interactions/index';
+// import interactionsPlugin from '@mkoliba/phylocanvas-plugin-interactions/index';
 
 import { Newick, PhylocanvasOptions, PhylocanvasTree } from '../types/phylocanvas';
 
@@ -41,7 +41,7 @@ export function usePhylocanvas(
       let allPlugins = plugins;
       if (interactive) {
         // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-        const interactionsPlugin = require('@cgps/phylocanvas-plugin-interactions/index').default;
+        const interactionsPlugin = require('@mkoliba/phylocanvas-plugin-interactions').default;
         allPlugins = [contextMenuPlugin, interactionsPlugin, ...plugins];
       }
 

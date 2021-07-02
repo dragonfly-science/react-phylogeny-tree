@@ -1,4 +1,4 @@
-import scaleBarPlugin from '@cgps/phylocanvas-plugin-scalebar/index';
+import scaleBarPlugin from '@mkoliba/phylocanvas-plugin-scalebar';
 
 import { createOnRedrawReRootTreePlugin } from './createOnRedrawReRootTree';
 import { createOnSelectPlugin } from './createOnSelect';
