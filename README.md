@@ -32,6 +32,10 @@ export function YourComponent(props): JSX.Element {
     () => ({
       selectedIds: highlighted,
       leafSubtree: { leafID: subtreeID, noLevels: 1, minLeafToRootLength: 0 },
+      tooltipContent: (node) => {
+        return `id: ${node.id}<br>
+          branch length: ${node.branchLength}`;
+      },
     }),
     [highlighted, subtreeID]
   );
@@ -78,21 +82,30 @@ export function YourComponent(props): JSX.Element {
 ```
 ## Main API
 `PhylogenyTree`: component containing `TreeCanvas`, `ZoomButtons` components and `usePhylocanvas` hook. Its props are:
-- `newick`: newick tree string, type `string`, mandatory
+- `newick`: newick tree string
+  - type `string`
+  - mandatory 
+  - should be memoized, if changes Phylocanvas instance is reinitialised
 - `options`: object, Phylocanvas options
 - `plugins`: array of plugins, viz section Plugins bellow
+  - should be memoized, if changes Phylocanvas instance is reinitialised
 - `hooks`: array of hooks, viz section Hooks bellow
 - `interactive`: boolean, activate Phylocanvas interaction and context-menu plugins
 - `zoom`: boolean, when `interactive` and `zoom` are `true` buttons for zoom appears.
 - `zoomStyle`: `CSSProperties` object passed to zoom buttons container. 
 
 `usePhylocanvas`: react hook wrapping Phylocanvas instance
-- `newick`: newick tree string, type `string`, mandatory,
+- `newick`: newick tree string
+  - type `string`
+  - mandatory 
+  - should be memoized, if changes Phylocanvas instance is reinitialised
 - `canvasRef`: `React.MutableRefObject<HTMLCanvasElement | null>`
 - `options`: object, Phylocanvas options
 - `plugins`: array of plugins, viz section Plugins bellow
+  - should be memoized, if changes Phylocanvas instance is reinitialised
 - `hooks`: array of hooks, viz section Hooks bellow
-- `interactive` = false
+- `interactive` when true activate Phylocanvas interaction and context-menu plugins
+  - type: boolean
 
 ## Plugins
 Plugins supported by Phylocanvas3 of type:
