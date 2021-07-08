@@ -8,7 +8,7 @@ export function setRootNLevelsUp(
   noLevels = 6,
   minLeafToRootLength = 5
 ): void {
-  let node : TreeNode | null = null;
+  let node: TreeNode | null = null;
   let upLength = 0;
   if (nodeID !== null) {
     node = tree.getNodeById(nodeID);

@@ -1,12 +1,18 @@
-import { createTree } from '@mkoliba/phylocanvas';
-import contextMenuPlugin from '@mkoliba/phylocanvas-plugin-context-menu';
+import contextMenuPlugin from '@mkoliba/phylocanvas-plugin-context-menu/index';
+import { createTree } from '@mkoliba/phylocanvas/index';
 import { useCallback, useEffect, useRef } from 'react';
 // import interactionsPlugin from '@mkoliba/phylocanvas-plugin-interactions/index';
 
 import { Newick, PhylocanvasOptions, PhylocanvasTree } from '../types/phylocanvas';
 
-export type Plugins = ((tree: PhylocanvasTree, decorate: (fnName: string, fn: unknown) => void) => void)[];
-export type Hooks = ((tree: PhylocanvasTree, options: PhylocanvasOptions) => void)[];
+export type Plugins = ((
+  tree: PhylocanvasTree,
+  decorate: (fnName: string, fn: unknown) => void
+) => void)[];
+export type Hooks = ((
+  getTree: () => PhylocanvasTree | null,
+  options: PhylocanvasOptions
+) => void)[];
 
 const defaultOptions = {
   nodeSize: 7,
@@ -27,12 +33,12 @@ export function usePhylocanvas(
   interactive = false
 ) {
   const treeInstance = useRef(null);
-  const getTree = useCallback<() => PhylocanvasTree | null>(() => treeInstance.current, []); // equivalent to useGetLatest(treeInstance.current);
+  const getTree = useCallback<() => PhylocanvasTree | null>(() => treeInstance.current, []);
 
   useEffect(() => {
     if (canvasRef.current) {
       const parrent = canvasRef.current.parentElement;
-      
+
       if (parrent?.clientWidth && parrent?.clientHeight) {
         canvasRef.current.width = parrent.clientWidth;
         canvasRef.current.height = parrent.clientHeight;
@@ -40,8 +46,9 @@ export function usePhylocanvas(
 
       let allPlugins = plugins;
       if (interactive) {
-        // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-        const interactionsPlugin = require('@mkoliba/phylocanvas-plugin-interactions').default;
+        const interactionsPlugin =
+          // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
+          require('@mkoliba/phylocanvas-plugin-interactions/index').default;
         allPlugins = [contextMenuPlugin, interactionsPlugin, ...plugins];
       }
 
@@ -59,8 +66,6 @@ export function usePhylocanvas(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newick, plugins]);
 
-  loopHooks(hooks, getTree(), options);
-
   const handleZoomIn = useCallback(() => {
     const tree = getTree();
     if (tree && tree.state.scale < tree.state.maxScale * tree.pixelRatio) {
@@ -75,12 +80,14 @@ export function usePhylocanvas(
     }
   }, [getTree]);
 
+  loopHooks(hooks, getTree, options);
+
   return { handleZoomIn, handleZoomOut };
 }
 
-export const loopHooks = (hooks, context, options) => {
+export const loopHooks = (hooks, getInstance, options) => {
   hooks.forEach((hook) => {
-    const nextValue = hook(context, options);
+    const nextValue = hook(getInstance, options);
     if (process && process.env.NODE_ENV === 'development')
       if (typeof nextValue !== 'undefined') {
         throw new Error(

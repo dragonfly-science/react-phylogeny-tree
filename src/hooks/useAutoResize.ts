@@ -1,20 +1,17 @@
 import { useEffect } from 'react';
 
 import { PhylocanvasTree } from '../types/phylocanvas';
-import { useGetLatest } from '../utils';
 
-export function useAutoResize(treeInstance: PhylocanvasTree | null) {
-  const getTree = useGetLatest(treeInstance);
-  // console.log('useAutoResize1', treeInstance, treeInstance?.state);
+export function useAutoResize(getTree: () => PhylocanvasTree | null) {
   useEffect(() => {
-    // console.log('useAutoResize2', treeInstance);
+    // console.log('useAutoResize2', getTree());
     function updateWidthAndHeight() {
       const tree = getTree();
+      // console.log('useAutoResize3', tree);
       if (tree) {
         const width = tree.canvas.parentElement?.clientWidth;
         const height = tree.canvas.parentElement?.clientHeight;
         if (width && height) {
-
           tree.resize(width, height);
         }
       }
@@ -25,5 +22,5 @@ export function useAutoResize(treeInstance: PhylocanvasTree | null) {
       window.removeEventListener('resize', updateWidthAndHeight);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [getTree]);
 }

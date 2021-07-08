@@ -97,8 +97,8 @@ export type TreeNode = {
 };
 
 export type Leaf = {
-  id: string
-} & TreeNode
+  id: string;
+} & TreeNode;
 
 type ContextMenu = {
   close: unknown;
@@ -140,7 +140,7 @@ export type PhylocanvasTree = {
   getLeafNodes: (nodeOrId: string | TreeNode) => void;
   getNewick: () => void;
   getNodeAtPoint: () => void;
-  getNodeById: (nodeOrId: string| number | TreeNode) => TreeNode;
+  getNodeById: (nodeOrId: string | number | TreeNode) => TreeNode;
   getNodeLabels: () => void;
   getVirtualTree: () => void;
   highlightNode: () => void;
@@ -163,7 +163,7 @@ export type PhylocanvasTree = {
   setBranchScale: () => void;
   setFontSize: () => void;
   setNodeSize: () => void;
-  setRoot: (nodeOrId: string| number | TreeNode | null) => void;
+  setRoot: (nodeOrId: string | number | TreeNode | null) => void;
   setScale: () => void;
   setSource: () => void;
   setState: (updater: PhylocanvasState) => void;

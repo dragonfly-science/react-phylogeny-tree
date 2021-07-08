@@ -1,1 +1,1 @@
-declare module '@mkoliba/phylocanvas/index'
+declare module '@mkoliba/phylocanvas/index';
