@@ -1,6 +1,8 @@
 # react-phylocanvas3
 
-React wrapper for [Phylocanvas3](https://github.com/mkoliba/phylocanvas3), phylogeny tree visualisation library. Use prepared component `PhylogenyTree` or build your own with `usePhylocanvas` hook.
+React wrapper for [Phylocanvas3](https://github.com/mkoliba/phylocanvas3), phylogeny tree visualisation library. Use prepared component `PhylogenyTree` or build your own component with `usePhylocanvas` hook.
+
+![Phylocanvas3 example illustration](https://github.com/mkoliba/phylocanvas3/raw/main/illustration.jpg)
 
 ## Example
 
@@ -80,6 +82,7 @@ export function YourComponent(props): JSX.Element {
   )
 }
 ```
+
 ## Main API
 `PhylogenyTree`: component containing `TreeCanvas`, `ZoomButtons` components and `usePhylocanvas` hook. Its props are:
 - `newick`: newick tree string
@@ -150,7 +153,7 @@ You can create your own plugin for phylocanvas3. They are just a function which 
 ## Hooks
 import from `react-phylocanvas3/hooks`. Pass in array with stable reference between rerenders (memoize). Their type is:
 ```typescript
-((tree: Tree, options: PhylocanvasOptions) => void)[];
+((getTreeInstance: () => Tree | null, options: PhylocanvasOptions) => void)[];
 ```
 
 `useLeafSubtree`: react hook which wraps `setRootNLevelsUp`. Needs to receive folowing object under key `leafSubtree` from `options`.
@@ -169,5 +172,25 @@ leafSubtree: {
 `setRootNLevelsUp`: function which receive Phylocanvas instance and ID of a leaf and show subtree which root is at least `noLevels` up in hierarchy and minimal length between leaf and new subtree root is `minLeafToRootLength`.
 ```typescript
 (tree: Tree, nodeID: string, noLevels = 6, minLeafToRootLength = 5) => void;
+```
+
+## SSR
+Package does not support SSR (server side rendering). It is necessary to exclude component which use package from SSR or transpile it. 
+
+### In NEXT.js
+import component which use this package using NEXT.js dynamic import:
+```javascript
+import dynamic from 'next/dynamic'
+
+const ComponentWithTree = dynamic(
+  () => import('../components/component_with_tree'),
+  { ssr: false }
+)
+```
+
+Or use [next-transpile-modules](https://github.com/martpie/next-transpile-modules):
+```javascript
+const withTM = require('next-transpile-modules')(['react-phylocanvas3']);
+module.exports = withTM();
 ```
 

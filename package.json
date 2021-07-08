@@ -37,6 +37,7 @@
     "copy-files": "copyfiles -f src/css/*.css lib/css/",
     "build": "tsc && yarn copy-files",
     "prepare": "yarn clean && yarn build",
+    "format": "prettier --write src && eslint src --ext .js,.jsx,.ts,.tsx",
     "watch": "watch 'yarn build' ./src"
   },
   "dependencies": {
