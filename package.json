@@ -5,6 +5,10 @@
   "author": "Martin Koliba",
   "license": "Apache-2.0",
   "main": "lib/index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mkoliba/react-phylocanvas3.git"
+  },
   "exports": {
     ".": "./lib/index.js",
     "./plugins": "./lib/plugins",
