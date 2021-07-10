@@ -111,6 +111,21 @@ type ContextMenu = {
   treeMenuItems: unknown[][];
 };
 
+type NodeOrId = string | number | TreeNode;
+type LeafNodeOrId = string | TreeNode;
+
+type VirtualTree = {
+  nodeById: NodeOrId,
+  rootNode: TreeNode
+  leafNodes: Leaf
+  postorderTraversal: TreeNode[]
+  preorderTraversal: TreeNode[]
+  source: Newick
+  originalSource: Newick
+};
+
+type Layout = {maxLabelWidth: number} & VirtualTree;
+
 export type PhylocanvasTree = {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
@@ -118,62 +133,73 @@ export type PhylocanvasTree = {
   nodes: TreeNodes;
   pixelRatio: number;
   contextMenu?: ContextMenu;
-  cache: () => void;
-  chain: () => void;
-  changeBranchScale: () => void;
-  changeScale: () => void;
-  changeStepScale: () => void;
-  collapseNode: () => void;
+  cache: (name) => void;
+  chain: (...pipeline) => { [keys: string]: unknown };
+  changeBranchScale: (delta: number, point: { x: number; y: number }) => void;
+  changeScale: (dz: number, point: { x: number; y: number }) => void;
+  changeStepScale: (delta: number, point: { x: number; y: number }) => void;
+  collapseNode: (nodeOrId: NodeOrId, { refit }: { refit: boolean }) => void;
   destroy: () => void;
-  drawHighlight: () => void;
-  drawNode: () => void;
-  drawNodeShape: () => void;
-  exportPNG: () => void;
+  drawHighlight: (node: TreeNode) => void;
+  drawNode: (layout, node: TreeNode) => void;
+  drawNodeShape: (node, shape: string, size: number, radius: number) => void;
+  exportPNG: () => unknown;
   fitInPanel: () => void;
-  getBounds: () => void;
-  getCentrePoint: () => void;
-  getDrawingArea: () => void;
-  getInitialState: () => void;
-  getLabel: () => void;
-  getLeafIds: () => void;
-  getLeafLabels: () => void;
-  getLeafNodes: (nodeOrId: string | TreeNode) => void;
-  getNewick: () => void;
-  getNodeAtPoint: () => void;
-  getNodeById: (nodeOrId: string | number | TreeNode) => TreeNode;
-  getNodeLabels: () => void;
-  getVirtualTree: () => void;
-  highlightNode: () => void;
-  index: () => void;
-  init: () => void;
-  layout: () => void;
-  measureTextWidth: () => void;
-  mergeState: () => void;
-  postRender: () => void;
-  preRender: () => void;
+  getBounds: () => {
+    minX: number;
+    maxX: number;
+    minY: number;
+    maxY: number;
+  };
+  getCentrePoint: () => { x: number; y: number };
+  getDrawingArea: () => {
+    width: number;
+    height: number;
+    left: number;
+    top: number;
+    right: number;
+    bottom: number;
+  };
+  getInitialState: (options: PhylocanvasOptions) => PhylocanvasState;
+  getLabel: (node: NodeOrId) => string | number;
+  getLeafIds: (node: NodeOrId) => string[];
+  getLeafLabels: (node: NodeOrId) => string[];
+  getLeafNodes: (nodeOrId: LeafNodeOrId) => Leaf;
+  getNewick: (nodeOrId: LeafNodeOrId, option: PhylocanvasOptions) => string;
+  getNodeAtPoint: (x:number, y:number) => TreeNode | null;
+  getNodeById: (nodeOrId: NodeOrId) => TreeNode;
+  getNodeLabels: (nodeIds: string | number) => string[];
+  getVirtualTree: () => VirtualTree;
+  highlightNode: (nodeOrId: NodeOrId) => void;
+  init: (options: PhylocanvasOptions) => void;
+  layout: () => Layout;
+  measureTextWidth: (text: string, weight: string) => number;
+  mergeState: (state: Partial<PhylocanvasState>) => void;
+  postRender: (nodes: VirtualTree) => void;
+  preRender: (layout: Layout) => void;
   render: () => void;
-  rerootNode: () => void;
-  reset: () => void;
-  resetCollapsedNodes: () => void;
+  rerootNode: (layout: Layout, parent: TreeNode, sourceNode: TreeNode) => void;
+  reset: (source) => void;
+  resetCollapsedNodes: ({ refit }: { refit: boolean }) => void;
   resize: (width: number, heigh: number) => void;
   resizeCanvas: () => void;
-  rotateNode: () => void;
-  selectLeafNodes: () => void;
-  selectNode: () => void;
-  setBranchScale: () => void;
-  setFontSize: () => void;
-  setNodeSize: () => void;
+  rotateNode: (nodeOrId: NodeOrId, { refit }: { refit: boolean }) => void;
+  selectLeafNodes: (ids: string[], append: boolean) => void;
+  selectNode: (nodeOrId: NodeOrId, append: boolean) => void;
+  setBranchScale: (branchScale: number, point: { x: number; y: number }) => void;
+  setFontSize: (fontSize: number) => void;
+  setNodeSize: (nodeSize: number) => void;
   setRoot: (nodeOrId: string | number | TreeNode | null) => void;
-  setScale: () => void;
-  setSource: () => void;
-  setState: (updater: PhylocanvasState) => void;
-  setStepScale: () => void;
-  setStyles: () => void;
-  setTreeType: () => void;
+  setScale: (scale: number, point: { x: number; y: number }) => void;
+  setSource: (source: Newick) => void;
+  setState: (updater: Partial<PhylocanvasState>) => void;
+  setStepScale: (stepScale: number, point: { x: number; y: number }) => void;
+  setStyles: (styles: NodeStyle) => void;
+  setTreeType: (type) => void;
   toggleAlignLeafLabels: () => void;
   toggleLeafLabels: () => void;
   transform: (dx?: number, dy?: number, dz?: number, point?: { x: number; y: number }) => void;
-  trigger: () => void;
+  trigger: (eventName, args) => void;
 };
 
 export type PhylocanvasOptions = { [keys: string]: unknown } & Partial<PhylocanvasState>;
