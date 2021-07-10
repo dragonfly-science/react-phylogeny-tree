@@ -66,6 +66,13 @@ export function usePhylocanvas(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newick, plugins]);
 
+  useEffect(()=> {
+    const tree = getTree();
+    if (tree) {
+      tree.setState(options);
+    }
+  }, [options, getTree]);
+
   const handleZoomIn = useCallback(() => {
     const tree = getTree();
     if (tree && tree.state.scale < tree.state.maxScale * tree.pixelRatio) {
