@@ -115,16 +115,16 @@ type NodeOrId = string | number | TreeNode;
 type LeafNodeOrId = string | TreeNode;
 
 type VirtualTree = {
-  nodeById: NodeOrId,
-  rootNode: TreeNode
-  leafNodes: Leaf
-  postorderTraversal: TreeNode[]
-  preorderTraversal: TreeNode[]
-  source: Newick
-  originalSource: Newick
+  nodeById: NodeOrId;
+  rootNode: TreeNode;
+  leafNodes: Leaf;
+  postorderTraversal: TreeNode[];
+  preorderTraversal: TreeNode[];
+  source: Newick;
+  originalSource: Newick;
 };
 
-type Layout = {maxLabelWidth: number} & VirtualTree;
+type Layout = { maxLabelWidth: number } & VirtualTree;
 
 export type PhylocanvasTree = {
   canvas: HTMLCanvasElement;
@@ -166,7 +166,7 @@ export type PhylocanvasTree = {
   getLeafLabels: (node: NodeOrId) => string[];
   getLeafNodes: (nodeOrId: LeafNodeOrId) => Leaf;
   getNewick: (nodeOrId: LeafNodeOrId, option: PhylocanvasOptions) => string;
-  getNodeAtPoint: (x:number, y:number) => TreeNode | null;
+  getNodeAtPoint: (x: number, y: number) => TreeNode | null;
   getNodeById: (nodeOrId: NodeOrId) => TreeNode;
   getNodeLabels: (nodeIds: string | number) => string[];
   getVirtualTree: () => VirtualTree;

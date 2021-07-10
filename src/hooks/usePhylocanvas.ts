@@ -66,7 +66,7 @@ export function usePhylocanvas(
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [newick, plugins]);
 
-  useEffect(()=> {
+  useEffect(() => {
     const tree = getTree();
     if (tree) {
       tree.setState(options);
