@@ -1,25 +1,27 @@
-# react-phylocanvas3
+# react-phylogeny-tree
 
-React wrapper for [Phylocanvas3](https://github.com/mkoliba/phylocanvas3), phylogeny tree visualisation library. Use prepared component `PhylogenyTree` or build your own component with `usePhylocanvas` hook.
+React integration for phylogeny visualisation library for Newick tree format [phylogeny-tree](https://github.com/mkoliba/phylogeny-tree), the fork of phylocanvas-3 (developed by [The Centre for Genomic Pathogen Surveillance](https://www.pathogensurveillance.net/)). 
 
-![Phylocanvas3 example illustration](https://github.com/mkoliba/phylocanvas3/raw/main/illustration.jpg)
+Use prepared component `PhylogenyTree` or build your own component with `usePhylocanvas` hook.
+
+![phylogeny-tree example illustration](https://github.com/mkoliba/phylogeny-tree/raw/main/illustration.jpg)
 
 ## Example
 
 ```TSX
 import React from 'react';
 
-import PhylogenyTree from 'react-phylocanvas3';
+import PhylogenyTree from 'react-phylogeny-tree';
 import {
   createOnSelectPlugin,
   scaleBarPlugin,
   createOnViewSubtreePlugin,
   createOnRedrawReRootTreePlugin,
-} from 'react-phylocanvas3/plugins';
-import {useLeafSubtree, useAutoResize} from 'react-phylocanvas3/hooks';
-import 'react-phylocanvas3/css/zoom.css'; // in next.js css imports might need to go to pages/_app.js
-import '@mkoliba/phylocanvas-plugin-context-menu/styles.css';
-import '@mkoliba/phylocanvas-plugin-interactions/styles.css';
+} from 'react-phylogeny-tree/plugins';
+import {useLeafSubtree, useAutoResize} from 'react-phylogeny-tree/hooks';
+import 'react-phylogeny-tree/css/zoom.css'; // in next.js css imports might need to go to pages/_app.js
+import '@mkoliba/phylogeny-tree-plugin-context-menu/styles.css';
+import '@mkoliba/phylogeny-tree-plugin-interactions/styles.css';
 
 const newick = '(((A:0.2, B:0.3):0.3,(C:0.5, D:0.3):0.2):0.3, E:0.7):1.0;';
 const hooks = [useAutoResize, useLeafSubtree];
@@ -88,49 +90,49 @@ export function YourComponent(props): JSX.Element {
 - `newick`: newick tree string
   - type `string`
   - mandatory 
-  - should be memoized, if changes Phylocanvas instance is reinitialised
-- `options`: object, Phylocanvas options
+  - should be memoized, if changes phylogeny-tree instance is reinitialised
+- `options`: object, phylogeny-tree options
 - `plugins`: array of plugins, viz section Plugins bellow
-  - should be memoized, if changes Phylocanvas instance is reinitialised
+  - should be memoized, if changes phylogeny-tree instance is reinitialised
 - `hooks`: array of hooks, viz section Hooks bellow
-- `interactive`: boolean, activate Phylocanvas interaction and context-menu plugins
+- `interactive`: boolean, activate phylogeny-tree interaction and context-menu plugins
 - `zoom`: boolean, when `interactive` and `zoom` are `true` buttons for zoom appears.
 - `zoomStyle`: `CSSProperties` object passed to zoom buttons container. 
 
-`usePhylocanvas`: react hook wrapping Phylocanvas instance
+`usePhylocanvas`: react hook wrapping phylogeny-tree instance
 - `newick`: newick tree string
   - type `string`
   - mandatory 
-  - should be memoized, if changes Phylocanvas instance is reinitialised
+  - should be memoized, if changes phylogeny-tree instance is reinitialised
 - `canvasRef`: `React.MutableRefObject<HTMLCanvasElement | null>`
-- `options`: object, Phylocanvas options
+- `options`: object, phylogeny-tree options
 - `plugins`: array of plugins, viz section Plugins bellow
-  - should be memoized, if changes Phylocanvas instance is reinitialised
+  - should be memoized, if changes phylogeny-tree instance is reinitialised
 - `hooks`: array of hooks, viz section Hooks bellow
-- `interactive` when true activate Phylocanvas interaction and context-menu plugins
+- `interactive` when true activate phylogeny-tree interaction and context-menu plugins
   - type: boolean
 
 ## Plugins
-Plugins supported by Phylocanvas3 of type:
+Plugins supported by react-phylogeny of type:
 
 ```typescript
 ((tree: Tree, decorate: (fnName: string, fn: unknown) => void) => void)[];
 ```
 
-### Phylocanvas plugins
-Patched versions of Phylocanvas3 `@cgps/phylocanvas-plugin-context-menu` and `@cgps/phylocanvas-plugin-interactions` are prepared in `usePhylocanvas` and are added on begging of plugin list when `interactive` is set to `true` in `PhylogenyTree` props or `usePhylocanvas` arguments. 
+### phylogeny-tree plugins
+`@mkoliba/phylogeny-tree-plugin-context-menu` and `@mkoliba/phylogeny-tree-plugin-interactions` are prepared in `usePhylocanvas` and are added on begging of plugin list when `interactive` is set to `true` in `PhylogenyTree` props or `usePhylocanvas` arguments. 
 
 `scaleBarPlugin`: plugin which adds the scale bar as a reference for branch length.
 
 ### Plugin factories
-Serve for creation of plugin function with callback. Import from `react-phylocanvas3/plugins`.
+Serve for creation of plugin function with callback. Import from `react-phylogeny-tree/plugins`.
 
 `createOnSelectPlugin` type:
 ```typescript 
 (onSelect: (tree: Tree, selectedIds: string[]) => void) => (tree: Tree, decorate: (fnName: string, fn: unknown) => void) => void
 ```
 - `onSelect`: callback which will be called when tree leafs are selected and highlighted. 
-- `tree`: phylocanvas instance
+- `tree`: phylogeny-tree instance
 - `selectedIds`: string of selected leaf IDs/labels
 
 
@@ -148,12 +150,12 @@ Serve for creation of plugin function with callback. Import from `react-phylocan
 - `onViewSubtree`: callback which will be called when _view subtree_ is invoked in context menu.
 
 ### custom plugins
-You can create your own plugin for phylocanvas3. They are just a function which accepts tree instance and internal decorate function from Phylocanvas. 
+You can create your own plugin for `phylogeny-tree`. They are just a function which accepts tree instance and internal decorate function from `phylogeny-tree`. 
 
 ## Hooks
-import from `react-phylocanvas3/hooks`. Pass in array with stable reference between rerenders (memoize). Their type is:
+import from `react-phylogeny-tree/hooks`. Pass in array with stable reference between rerenders (memoize). Their type is:
 ```typescript
-((getTreeInstance: () => Tree | null, options: PhylocanvasOptions) => void)[];
+((getTreeInstance: () => Tree | null, options: PhylogenyTreeOptions) => void)[];
 ```
 
 `useLeafSubtree`: react hook which wraps `setRootNLevelsUp`. Needs to receive folowing object under key `leafSubtree` from `options`.
@@ -169,7 +171,7 @@ leafSubtree: {
 `useAutoResize`: react hook for autoresizing canvas when window size changes.
 
 ## Utils
-`setRootNLevelsUp`: function which receive Phylocanvas instance and ID of a leaf and show subtree which root is at least `noLevels` up in hierarchy and minimal length between leaf and new subtree root is `minLeafToRootLength`.
+`setRootNLevelsUp`: function which receive phylogeny-tree instance and ID of a leaf and show subtree which root is at least `noLevels` up in hierarchy and minimal length between leaf and new subtree root is `minLeafToRootLength`.
 ```typescript
 (tree: Tree, nodeID: string, noLevels = 6, minLeafToRootLength = 5) => void;
 ```
@@ -190,7 +192,7 @@ const ComponentWithTree = dynamic(
 
 Or use [next-transpile-modules](https://github.com/martpie/next-transpile-modules):
 ```javascript
-const withTM = require('next-transpile-modules')(['react-phylocanvas3']);
+const withTM = require('next-transpile-modules')(['react-phylogeny-tree']);
 module.exports = withTM();
 ```
 

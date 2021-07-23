@@ -3,15 +3,15 @@ import { createTree } from '@mkoliba/phylocanvas/index';
 import { useCallback, useEffect, useRef } from 'react';
 // import interactionsPlugin from '@mkoliba/phylocanvas-plugin-interactions/index';
 
-import { Newick, PhylocanvasOptions, PhylocanvasTree } from '../types/phylocanvas';
+import { Newick, PhylogenyTreeOptions, PhylogenyTree } from 'react-phylocanvas3/src/types/phylogeny-tree';
 
 export type Plugins = ((
-  tree: PhylocanvasTree,
+  tree: PhylogenyTree,
   decorate: (fnName: string, fn: unknown) => void
 ) => void)[];
 export type Hooks = ((
-  getTree: () => PhylocanvasTree | null,
-  options: PhylocanvasOptions
+  getTree: () => PhylogenyTree | null,
+  options: PhylogenyTreeOptions
 ) => void)[];
 
 const defaultOptions = {
@@ -24,16 +24,16 @@ const defaultOptions = {
 const emptyObject = {};
 const emptyArray = [];
 
-export function usePhylocanvas(
+export function usePhylogenyTree(
   newick: Newick,
   canvasRef: React.MutableRefObject<HTMLCanvasElement | null>,
-  options: PhylocanvasOptions = emptyObject,
+  options: PhylogenyTreeOptions = emptyObject,
   plugins: Plugins = emptyArray,
   hooks: Hooks = emptyArray,
   interactive = false
 ) {
   const treeInstance = useRef(null);
-  const getTree = useCallback<() => PhylocanvasTree | null>(() => treeInstance.current, []);
+  const getTree = useCallback<() => PhylogenyTree | null>(() => treeInstance.current, []);
 
   useEffect(() => {
     if (canvasRef.current) {

@@ -1,13 +1,14 @@
 {
-  "name": "react-phylocanvas3",
+  "name": "react-phylogeny-tree",
   "version": "0.0.3",
-  "description": "React wrapper component for phylocanvas3",
+  "description": "React component for @mkoliba/phylogeny-tree the phylogeny visualisation library",
   "author": "Martin Koliba",
   "license": "Apache-2.0",
+  "keywords": ["phylogeny", "newick", "tree", "phylogenetic", "phylo", "react-component", "react-hook"],
   "main": "lib/index.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/mkoliba/react-phylocanvas3.git"
+    "url": "https://github.com/mkoliba/react-phylogeny-tree.git"
   },
   "exports": {
     ".": "./lib/index.js",

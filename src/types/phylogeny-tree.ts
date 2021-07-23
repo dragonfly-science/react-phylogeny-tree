@@ -4,7 +4,7 @@ type NodeStyle = Partial<{ shape: string; [key: string]: unknown }>;
 
 export type Decorate = (fnName: string, fn: unknown) => void;
 
-type PhylocanvasState = {
+type PhylogenyTreeState = {
   alignLabels: boolean;
   branchScale: number;
   collapsedIds: string[];
@@ -126,10 +126,10 @@ type VirtualTree = {
 
 type Layout = { maxLabelWidth: number } & VirtualTree;
 
-export type PhylocanvasTree = {
+export type PhylogenyTree = {
   canvas: HTMLCanvasElement;
   ctx: CanvasRenderingContext2D;
-  state: PhylocanvasState;
+  state: PhylogenyTreeState;
   nodes: TreeNodes;
   pixelRatio: number;
   contextMenu?: ContextMenu;
@@ -160,21 +160,21 @@ export type PhylocanvasTree = {
     right: number;
     bottom: number;
   };
-  getInitialState: (options: PhylocanvasOptions) => PhylocanvasState;
+  getInitialState: (options: PhylogenyTreeOptions) => PhylogenyTreeState;
   getLabel: (node: NodeOrId) => string | number;
   getLeafIds: (node: NodeOrId) => string[];
   getLeafLabels: (node: NodeOrId) => string[];
   getLeafNodes: (nodeOrId: LeafNodeOrId) => Leaf;
-  getNewick: (nodeOrId: LeafNodeOrId, option: PhylocanvasOptions) => string;
+  getNewick: (nodeOrId: LeafNodeOrId, option: PhylogenyTreeOptions) => string;
   getNodeAtPoint: (x: number, y: number) => TreeNode | null;
   getNodeById: (nodeOrId: NodeOrId) => TreeNode;
   getNodeLabels: (nodeIds: string | number) => string[];
   getVirtualTree: () => VirtualTree;
   highlightNode: (nodeOrId: NodeOrId) => void;
-  init: (options: PhylocanvasOptions) => void;
+  init: (options: PhylogenyTreeOptions) => void;
   layout: () => Layout;
   measureTextWidth: (text: string, weight: string) => number;
-  mergeState: (state: Partial<PhylocanvasState>) => void;
+  mergeState: (state: Partial<PhylogenyTreeState>) => void;
   postRender: (nodes: VirtualTree) => void;
   preRender: (layout: Layout) => void;
   render: () => void;
@@ -192,7 +192,7 @@ export type PhylocanvasTree = {
   setRoot: (nodeOrId: string | number | TreeNode | null) => void;
   setScale: (scale: number, point: { x: number; y: number }) => void;
   setSource: (source: Newick) => void;
-  setState: (updater: Partial<PhylocanvasState>) => void;
+  setState: (updater: Partial<PhylogenyTreeState>) => void;
   setStepScale: (stepScale: number, point: { x: number; y: number }) => void;
   setStyles: (styles: NodeStyle) => void;
   setTreeType: (type) => void;
@@ -202,4 +202,4 @@ export type PhylocanvasTree = {
   trigger: (eventName, args) => void;
 };
 
-export type PhylocanvasOptions = { [keys: string]: unknown } & Partial<PhylocanvasState>;
+export type PhylogenyTreeOptions = { [keys: string]: unknown } & Partial<PhylogenyTreeState>;

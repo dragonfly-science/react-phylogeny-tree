@@ -1,9 +1,9 @@
-import { PhylocanvasTree } from '../types/phylocanvas';
+import { PhylogenyTree } from '../types/phylogeny-tree';
 
 export function createOnSelectPlugin(
-  onSelect: (tree: PhylocanvasTree, selectedIds: string[]) => void
+  onSelect: (tree: PhylogenyTree, selectedIds: string[]) => void
 ) {
-  return function onSelectPlugin(tree: PhylocanvasTree, decorate) {
+  return function onSelectPlugin(tree: PhylogenyTree, decorate) {
     decorate('selectNode', (delegate, args) => {
       delegate(...args);
       const selectedIds = tree.state.selectedIds;

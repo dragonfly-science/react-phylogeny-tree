@@ -1,9 +1,9 @@
-import { PhylocanvasTree } from '../types/phylocanvas';
+import { PhylogenyTree } from '../types/phylogeny-tree';
 
 export function createOnViewSubtreePlugin(
-  onViewSubtree: (tree: PhylocanvasTree, leafsInSubtree: string[]) => void
+  onViewSubtree: (tree: PhylogenyTree, leafsInSubtree: string[]) => void
 ) {
-  return function onViewSubtreePlugin(tree: PhylocanvasTree, decorate) {
+  return function onViewSubtreePlugin(tree: PhylogenyTree, decorate) {
     decorate('setRoot', (delegate, args) => {
       delegate(...args);
 

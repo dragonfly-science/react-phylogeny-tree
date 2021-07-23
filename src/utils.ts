@@ -1,9 +1,9 @@
 import { useCallback, useRef } from 'react';
 
-import { PhylocanvasTree, TreeNode } from './types/phylocanvas';
+import { PhylogenyTree, TreeNode } from './types/phylogeny-tree';
 
 export function setRootNLevelsUp(
-  tree: PhylocanvasTree,
+  tree: PhylogenyTree,
   nodeID: string,
   noLevels = 6,
   minLeafToRootLength = 5

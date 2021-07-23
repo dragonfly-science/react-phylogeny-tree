@@ -1,5 +1,5 @@
 import { PhylogenyTree } from './components/wrapper';
-import { usePhylocanvas } from './hooks/usePhylocanvas';
+import { usePhylogenyTree } from './hooks/usePhylogenyTree';
 
 export default PhylogenyTree;
-export { usePhylocanvas };
+export { usePhylogenyTree };

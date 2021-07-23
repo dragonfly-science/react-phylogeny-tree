@@ -1,13 +1,13 @@
 import React from 'react';
 
-import { Plugins, Hooks, usePhylocanvas } from '../hooks/usePhylocanvas';
-import { Newick, PhylocanvasOptions } from '../types/phylocanvas';
+import { Plugins, Hooks, usePhylogenyTree } from '../hooks/usePhylogenyTree';
+import { Newick, PhylogenyTreeOptions } from '../types/phylogeny-tree';
 import { TreeCanvas } from './canvas';
 import { ZoomButtons } from './zoom_buttons';
 
 type TreeProps = {
   newick: Newick;
-  options?: PhylocanvasOptions;
+  options?: PhylogenyTreeOptions;
   plugins?: Plugins;
   hooks?: Hooks;
   interactive?: boolean;
@@ -25,7 +25,7 @@ export function PhylogenyTree({
   zoomStyle,
 }: TreeProps): JSX.Element {
   const canvas = React.useRef<HTMLCanvasElement | null>(null);
-  const { handleZoomIn, handleZoomOut } = usePhylocanvas(
+  const { handleZoomIn, handleZoomOut } = usePhylogenyTree(
     newick,
     canvas,
     options,
