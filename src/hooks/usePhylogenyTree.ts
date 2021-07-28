@@ -1,9 +1,9 @@
-import contextMenuPlugin from '@mkoliba/phylocanvas-plugin-context-menu/index';
-import { createTree } from '@mkoliba/phylocanvas/index';
+import contextMenuPlugin from '@mkoliba/phylogeny-tree-plugin-context-menu/index';
+import { createTree } from '@mkoliba/phylogeny-tree/index';
 import { useCallback, useEffect, useRef } from 'react';
-// import interactionsPlugin from '@mkoliba/phylocanvas-plugin-interactions/index';
+// import interactionsPlugin from '@mkoliba/phylogeny-tree-plugin-interactions/index';
 
-import { Newick, PhylogenyTreeOptions, PhylogenyTree } from 'react-phylocanvas3/src/types/phylogeny-tree';
+import { Newick, PhylogenyTreeOptions, PhylogenyTree } from '../types/phylogeny-tree';
 
 export type Plugins = ((
   tree: PhylogenyTree,
@@ -48,7 +48,7 @@ export function usePhylogenyTree(
       if (interactive) {
         const interactionsPlugin =
           // eslint-disable-next-line @typescript-eslint/no-require-imports, @typescript-eslint/no-var-requires
-          require('@mkoliba/phylocanvas-plugin-interactions/index').default;
+          require('@mkoliba/phylogeny-tree-plugin-interactions/index').default;
         allPlugins = [contextMenuPlugin, interactionsPlugin, ...plugins];
       }
 
