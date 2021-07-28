@@ -1,6 +1,8 @@
 # react-phylogeny-tree
 
-React integration for phylogeny visualisation library for Newick tree format [phylogeny-tree](https://github.com/mkoliba/phylogeny-tree), the fork of phylocanvas-3 (developed by [The Centre for Genomic Pathogen Surveillance](https://www.pathogensurveillance.net/)). 
+React component (and hook) for phylogenetic tree visualisation from Newick tree format. Based on [@mkoliba/phylogeny-tree](https://github.com/mkoliba/phylogeny-tree), the fork of the Phylocanvas development branch phylocanvas-3 (developed by [The Centre for Genomic Pathogen Surveillance](https://www.pathogensurveillance.net/)).
+
+It handles up to ~15 000 leaves.
 
 Use prepared component `PhylogenyTree` or build your own component with `usePhylocanvas` hook.
 
@@ -11,10 +13,10 @@ Use prepared component `PhylogenyTree` or build your own component with `usePhyl
 ```TSX
 import React from 'react';
 
+import scaleBarPlugin from '@mkoliba/phylogeny-tree-plugin-scalebar';
 import PhylogenyTree from 'react-phylogeny-tree';
 import {
   createOnSelectPlugin,
-  scaleBarPlugin,
   createOnViewSubtreePlugin,
   createOnRedrawReRootTreePlugin,
 } from 'react-phylogeny-tree/plugins';
@@ -61,16 +63,18 @@ export function YourComponent(props): JSX.Element {
   }, []);
 
   return (
-    <div className="containerToBeFilledWithCanvas">
-      <PhylogenyTree
-          newick={newick}
-          options={options}
-          hooks={hooks}
-          plugins={plugins}
-          interactive={true}
-          zoom
-        />
-       <button
+    <div>
+      <div className="containerToBeFilledWithCanvas">
+        <PhylogenyTree
+            newick={newick}
+            options={options}
+            hooks={hooks}
+            plugins={plugins}
+            interactive={true}
+            zoom
+          />
+      </div>
+      <button
         onClick={() => {
           setSubtreeID('B');
         }}
@@ -79,7 +83,6 @@ export function YourComponent(props): JSX.Element {
       </button>
       <div>leafs in subtree: {leafs}</div>
       <div>selected IDs: {highlighted}</div>
-
     </div>
   )
 }
