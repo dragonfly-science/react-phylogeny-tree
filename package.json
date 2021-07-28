@@ -46,10 +46,9 @@
     "watch": "watch 'yarn build' ./src"
   },
   "dependencies": {
-    "@mkoliba/phylocanvas": "^3.18.0-beta.3",
-    "@mkoliba/phylocanvas-plugin-context-menu": "^3.18.0-beta.3",
-    "@mkoliba/phylocanvas-plugin-interactions": "^3.18.0-beta.3",
-    "@mkoliba/phylocanvas-plugin-scalebar": "^3.18.0-beta.3"
+    "@mkoliba/phylogeny-tree": "^3.18.0-beta.7",
+    "@mkoliba/phylogeny-tree-plugin-context-menu": "^3.18.0-beta.7",
+    "@mkoliba/phylogeny-tree-plugin-interactions": "^3.18.0-beta.7"
   },
   "peerDependencies": {
     "react": ">=16.8.0",

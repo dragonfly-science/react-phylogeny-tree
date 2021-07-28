@@ -38,32 +38,25 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
-"@mkoliba/phylocanvas-plugin-context-menu@^3.18.0-beta.3":
-  version "3.18.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@mkoliba/phylocanvas-plugin-context-menu/-/phylocanvas-plugin-context-menu-3.18.0-beta.3.tgz#c9dd1cc9f055af3433e3dbf4af795136340d813d"
-  integrity sha512-3mmAYFiktZgNDivM+h8yq62qe6W30KsgS2s0302Ua+L6Zgcclk5Y10WvquhJpIG3PSHTfEj8qp8S0vtEacwxaQ==
+"@mkoliba/phylogeny-tree-plugin-context-menu@^3.18.0-beta.7":
+  version "3.18.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@mkoliba/phylogeny-tree-plugin-context-menu/-/phylogeny-tree-plugin-context-menu-3.18.0-beta.7.tgz#a276ae7586878f90b177fa4495a8a0df09b40f01"
+  integrity sha512-A16CAx5fsvzw6TaGOr9tSx3yD+3pP5UI0OM2X0/uCRauTSCwcvbUlT6HTfAo9vXrHGJ5VMsrHhTJgZGDezLNmg==
   dependencies:
-    "@mkoliba/phylocanvas" "^3.18.0-beta.3"
+    "@mkoliba/phylogeny-tree" "^3.18.0-beta.7"
 
-"@mkoliba/phylocanvas-plugin-interactions@^3.18.0-beta.3":
-  version "3.18.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@mkoliba/phylocanvas-plugin-interactions/-/phylocanvas-plugin-interactions-3.18.0-beta.3.tgz#85c899faa76e2205cbd290ef66a9eac3015a6a68"
-  integrity sha512-TDJIDzJ8tHSM0KC1xqLTvxDqeyQBxjw30iaJTqnY2Cndn2vvZxH1D1AXz5D0wJFtY+nKHiijK7CE9Loy1SJOFA==
+"@mkoliba/phylogeny-tree-plugin-interactions@^3.18.0-beta.7":
+  version "3.18.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@mkoliba/phylogeny-tree-plugin-interactions/-/phylogeny-tree-plugin-interactions-3.18.0-beta.7.tgz#a0a8ae7392f04604985c6954a4d2d5dd5875a776"
+  integrity sha512-pW7t0k//G/xpJiaPzK/HRaCOXHFs49qdRd2C5S4v/zBU2B9714KkSNDhFIR+T2/scORkyDt3L7fffX0XpxyoIg==
   dependencies:
-    "@mkoliba/phylocanvas" "^3.18.0-beta.3"
+    "@mkoliba/phylogeny-tree" "^3.18.0-beta.7"
     "@thesoulfresh/pan-zoom" "https://github.com/soulfresh/pan-zoom#release/4.1.4"
 
-"@mkoliba/phylocanvas-plugin-scalebar@^3.18.0-beta.3":
-  version "3.18.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@mkoliba/phylocanvas-plugin-scalebar/-/phylocanvas-plugin-scalebar-3.18.0-beta.3.tgz#7d2ac891cc2ebac55b0446be9e636c3cb439389f"
-  integrity sha512-hGCc/YbQMuxRi9uypKNMNqs/Yb2N9L565ztVAmwud1yotUR+uZ2STIKKOlvRyaNmuWav7HED6GZEFQ34gUpSlQ==
-  dependencies:
-    "@mkoliba/phylocanvas" "^3.18.0-beta.3"
-
-"@mkoliba/phylocanvas@^3.18.0-beta.3":
-  version "3.18.0-beta.3"
-  resolved "https://registry.yarnpkg.com/@mkoliba/phylocanvas/-/phylocanvas-3.18.0-beta.3.tgz#a8e334bb98e1ffec6b1de14d516dd73534cee462"
-  integrity sha512-FfruTZWu05EB3HvBTAykV51LdaJSrDB8aNsroU050fbk7l8RgcC3HNchr73i/WtKEzwGKOB0NKaqdi0vDBPdNQ==
+"@mkoliba/phylogeny-tree@^3.18.0-beta.7":
+  version "3.18.0-beta.7"
+  resolved "https://registry.yarnpkg.com/@mkoliba/phylogeny-tree/-/phylogeny-tree-3.18.0-beta.7.tgz#6faae8b533b6936e8890aa248b86cc4d82f45686"
+  integrity sha512-LSmt9qhIpcdJn5RFe3FTUgsOWSLD0D4wxflRwlcIiICZ+6+pU/3b+Sws/yZkDPCrYJK4mjkzn6Bd0nbszoElfw==
   dependencies:
     biojs-io-newick "^1.5.0"
 
