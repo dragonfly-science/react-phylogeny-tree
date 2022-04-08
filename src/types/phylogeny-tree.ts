@@ -29,10 +29,10 @@ type PhylogenyTreeState = {
   offsetX: number;
   offsetY: number;
   padding: number;
-  renderInternalLabels: false;
-  renderLabels: true;
-  renderLeafLabels: true;
-  rootId: null;
+  renderInternalLabels: boolean;
+  renderLabels: boolean;
+  renderLeafLabels: boolean;
+  rootId: string | null;
   rotatedIds: [];
   scale: number;
   scalebar?: {
@@ -50,17 +50,17 @@ type PhylogenyTreeState = {
     textBaselineOffset: number;
     width: number;
   };
-  selectableInternalNodes: true;
-  selectableLeafNodes: true;
+  selectableInternalNodes: boolean;
+  selectableLeafNodes: boolean;
   selectedIds: string[];
-  showLabels: false;
-  showNodes: true;
+  showLabels: boolean;
+  showNodes: boolean;
   size: { width: number; height: number };
   source: Newick;
   stepScale: number;
   strokeStyle: string;
-  styleLeafLabels: false;
-  styleNodeLines: false;
+  styleLeafLabels: boolean;
+  styleNodeLines: boolean;
   styles: NodeStyle;
   type: string;
   zoomFactor: number;
