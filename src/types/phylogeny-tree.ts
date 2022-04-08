@@ -83,8 +83,8 @@ export type TreeNode = {
   distanceFromRoot: 0.1;
   id: string | number;
   isCollapsed: boolean;
-  isHidden: false;
-  isLeaf: true;
+  isHidden: boolean;
+  isLeaf: boolean;
   parent: TreeNode;
   postIndex: 0;
   preIndex: 1;
