@@ -80,6 +80,7 @@ type TreeNodes = {
 export type TreeNode = {
   angle: 0;
   branchLength: 0.1;
+  children?: TreeNode[]
   distanceFromRoot: 0.1;
   id: string | number;
   isCollapsed: boolean;
