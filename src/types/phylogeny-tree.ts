@@ -85,6 +85,7 @@ export type TreeNode = {
   id: string | number;
   isCollapsed: boolean;
   isHidden: boolean;
+  name?: string;
   isLeaf: boolean;
   parent: TreeNode;
   postIndex: number;
