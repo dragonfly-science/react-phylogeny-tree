@@ -17,7 +17,7 @@ type PhylogenyTreeState = {
   haloWidth: number;
   highlightedId: null | string[];
   highlightedStyle: string;
-  interactions?: { highlight: true; pan: true; selection: true; tooltip: true; zoom: true };
+  interactions?: { highlight: boolean; pan: boolean; selection: boolean; tooltip: boolean; zoom: boolean };
   internalNodeStyle: NodeStyle;
   labelThreshold: number;
   leafNodeStyle: NodeStyle;
