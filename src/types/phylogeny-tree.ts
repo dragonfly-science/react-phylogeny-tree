@@ -68,7 +68,7 @@ type PhylogenyTreeState = {
 
 type TreeNodes = {
   leafNodes: Leaf[];
-  maxLabelWidth: 28;
+  maxLabelWidth: number;
   nodeById: { [key: string]: TreeNode };
   originalSource: Newick;
   postorderTraversal: TreeNode[];
@@ -78,23 +78,23 @@ type TreeNodes = {
 };
 
 export type TreeNode = {
-  angle: 0;
-  branchLength: 0.1;
+  angle: number;
+  branchLength: number;
   children?: TreeNode[]
-  distanceFromRoot: 0.1;
+  distanceFromRoot: number;
   id: string | number;
   isCollapsed: boolean;
   isHidden: boolean;
   isLeaf: boolean;
   parent: TreeNode;
-  postIndex: 0;
-  preIndex: 1;
-  totalLeafLength: 0.1;
-  totalLeaves: 1;
-  totalNodes: 1;
-  visibleLeaves: 1;
-  x: 3.439360929557008;
-  y: 0;
+  postIndex: number;
+  preIndex: number;
+  totalLeafLength: number;
+  totalLeaves: number;
+  totalNodes: number;
+  visibleLeaves: number;
+  x: number;
+  y: number;
 };
 
 export type Leaf = {
