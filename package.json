@@ -57,7 +57,7 @@
     "watch": "watch 'yarn build' ./src"
   },
   "dependencies": {
-    "@mkoliba/phylogeny-tree": "git@github.com:dragonfly-science/phylogeny-tree.git#39a39655e9e563e0ae4760e8566e04258ce06723",
+    "@mkoliba/phylogeny-tree": "git@github.com:dragonfly-science/phylogeny-tree.git#tag=v3.18.0-beta.8",
     "@mkoliba/phylogeny-tree-plugin-context-menu": "^3.18.0-beta.7",
     "@mkoliba/phylogeny-tree-plugin-interactions": "^3.18.0-beta.7"
   },
@@ -84,5 +84,8 @@
     "rimraf": "^3.0.2",
     "typescript": "^4.3.2",
     "watch": "^1.0.2"
+  },
+  "resolutions": {
+    "@mkoliba/phylogeny-tree": "git@github.com:dragonfly-science/phylogeny-tree.git#39a39655e9e563e0ae4760e8566e04258ce06723"
   }
 }
