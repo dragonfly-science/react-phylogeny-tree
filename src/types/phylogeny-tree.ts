@@ -142,6 +142,7 @@ export type PhylogenyTree = {
   changeStepScale: (delta: number, point: { x: number; y: number }) => void;
   collapseNode: (nodeOrId: NodeOrId, { refit }: { refit: boolean }) => void;
   destroy: () => void;
+  drawBGLayer: (layout) => void;
   drawHighlight: (node: TreeNode) => void;
   drawNode: (layout, node: TreeNode) => void;
   drawNodeShape: (node, shape: string, size: number, radius: number) => void;
